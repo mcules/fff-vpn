@@ -18,7 +18,7 @@ $dbh = new PDO("mysql:host=$MYSQL_HOST;dbname=$MYSQL_DATA", $MYSQL_USER, $MYSQL_
 if(isset($_POST['submit']) && $_POST['submit']=='Registrieren') {
 	if($user_id != '' && $user_pass != '' && $user_mail != '') {
 		if(in_array($user_id, $forbidden_names)) {
-			die('Benutzername nicht erlaubt, bitte wähle einen anderen!);
+			die('Benutzername nicht erlaubt, bitte wähle einen anderen!');
 		}
 		$stmt = $dbh->prepare("SELECT user_id FROM user where user_id = :user_id");
 		$stmt->bindParam(':user_id', $user_id);
