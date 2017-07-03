@@ -8,15 +8,18 @@
 <?php
 error_reporting(E_ALL);
 include "config.php";
+$user_id = $_POST['user_id'];
+$user_pass = $_POST['user_pass'];
+$user_mail = $_POST['user_mail'];
+$forbidden_names = array('admin', 'webmaster');
 
 $dbh = new PDO("mysql:host=$MYSQL_HOST;dbname=$MYSQL_DATA", $MYSQL_USER, $MYSQL_PASS);
 
 if(isset($_POST['submit']) && $_POST['submit']=='Registrieren') {
-	if($_POST['user_id'] != '' && $_POST['user_pass'] != '' && $_POST['user_mail'] != '') {
-		$user_id = $_POST['user_id'];
-		$user_pass = $_POST['user_pass'];
-		$user_mail = $_POST['user_mail'];
-
+	if($user_id != '' && $user_pass != '' && $user_mail != '') {
+		if(in_array($user_id, $forbidden_names)) {
+			die('Benutzername nicht erlaubt, bitte wähle einen anderen!);
+		}
 		$stmt = $dbh->prepare("SELECT user_id FROM user where user_id = :user_id");
 		$stmt->bindParam(':user_id', $user_id);
 		$stmt->execute();
