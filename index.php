@@ -1,10 +1,3 @@
-<form name="register" action="<?php echo $_SERVER[PHP_SELF];?>" method="POST" accept-charset="UTF-8">
-	Benutzername: <input type="text" name="user_id"  maxlength="32"><br/>
-	Passwort: <input type="password" name="user_pass"  maxlength="32"><br/>
-	Email: <input type="text" name="user_mail"  maxlength="64"><br/>
-	<input type="submit" name="submit" value="Registrieren">
-</form>
-
 <?php
 error_reporting(E_ALL);
 include "config.php";
@@ -42,9 +35,45 @@ if(isset($_POST['submit']) && $_POST['submit']=='Registrieren') {
 	}
 }
 ?>
-<br /><br />
-<hr>
-<b>Konfigurationen:</b><br />
-<a href="vpn.freifunk-franken.de.ovpn">ovpn config</a><br />
-<a href="vpn.freifunk-franken.de.ovpn.zip">ovpn config (zip)</a><br />
-<a href="vpn.freifunk-franken.de.visz">Viscocity config</a>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<title>vpn.freifunk-franken.de</title>
+	<link href="assets/style.css" rel="stylesheet" type="text/css" media="screen"/>
+</head>
+<body>
+	<div id="header">
+		<h1>vpn.freifunk-franken.de</h1>
+		<h2>Freifunk Franken VPN</h2>
+		<img src="assets/freifunk.svg" alt="freifunk"/>
+	</div>
+	<div id="stripe" style="">
+		<a style="" href="http://freifunk-franken.de/">freifunk-franken.de</a>
+	</div>
+	<div id="container">
+		<div class="form">
+			<h3>Registieren</h3>
+			<form id="register" name="register" action="<?php echo $_SERVER[PHP_SELF];?>" method="POST" accept-charset="UTF-8">
+				<label for="user_id">Benutzername:</label>
+				<input type="text" name="user_id" id="user_id" maxlength="32"/>
+
+				<label for="user_pass">Passwort:</label>
+				<input type="password" name="user_pass" id="user_pass" maxlength="32"/>
+
+				<label for="user_mail">Email:</label>
+				<input type="text" name="user_mail" id="user_mail" maxlength="64"/>
+
+				<input type="submit" name="submit" value="Registrieren" class="btn"/>
+			</form>
+		</div>
+		<div class="config">
+			<h3>Konfiguration</h3>
+			<ul>
+				<li><a href="vpn.freifunk-franken.de.ovpn">ovpn config</a></li>
+				<li><a href="vpn.freifunk-franken.de.ovpn.zip">ovpn config (zip)</a></li>
+				<li><a href="vpn.freifunk-franken.de.visz">Viscocity config</a></li>
+			</ul>
+	</div>
+	</body>
+</html>
