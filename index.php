@@ -49,7 +49,7 @@ if(isset($_POST['submit']) && $_POST['submit']=='Registrieren') {
 		<img src="assets/freifunk.svg" alt="freifunk"/>
 	</div>
 	<div id="stripe" style="">
-		<a style="" href="http://freifunk-franken.de/">freifunk-franken.de</a>
+		<a style="" href="http://www.freifunk-franken.de/" target="_blank">freifunk-franken.de</a>
 	</div>
 	<div id="container">
 		<div class="form">
