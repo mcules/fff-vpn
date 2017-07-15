@@ -79,6 +79,11 @@ h4 {
 	margin-right: 10%;
 }
 
+#container .error {
+	font-weight: bold;
+	color: #d22755;
+}
+
 #stripe {
 	background-color: #ffb400;
 	padding: 0.5em 0.5em 0.5em 40px;
