@@ -44,9 +44,11 @@ if(isset($_POST['submit']) && $_POST['submit']=='Registrieren') {
 </head>
 <body>
 	<div id="header">
-		<h1>vpn.freifunk-franken.de</h1>
-		<h2>Freifunk Franken VPN</h2>
-		<img src="assets/freifunk.svg" alt="freifunk"/>
+		<div class="inner">
+			<h1>vpn.freifunk-franken.de</h1>
+			<h2>Freifunk Franken VPN</h2>
+			<img src="assets/freifunk.svg" alt="freifunk"/>
+		</div>
 	</div>
 	<div id="stripe" style="">
 		<a style="" href="http://www.freifunk-franken.de/" target="_blank">freifunk-franken.de</a>
