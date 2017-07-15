@@ -43,9 +43,12 @@ h4 {
 
 #header {
 	color: #222;
-	padding-left: 40px;
 	height: 70px;
 	width: 100%;
+}
+
+#header .inner {
+	padding-left: 40px;
 }
 
 #header h1 {
@@ -74,6 +77,11 @@ h4 {
 
 #container .form {
 	margin-right: 10%;
+}
+
+#container .error {
+	font-weight: bold;
+	color: #d22755;
 }
 
 #stripe {
