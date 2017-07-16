@@ -1,42 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>vpn.freifunk-franken.de</title>
-    <link href="{$template_dir}assets/style.css" rel="stylesheet" type="text/css" media="screen"/>
-</head>
-<body>
-<div id="header">
-    <div class="inner">
-        <h1>vpn.freifunk-franken.de</h1>
-        <h2>Freifunk Franken VPN</h2>
-        <img src="{$template_dir}assets/freifunk.svg" alt="freifunk"/>
-    </div>
-</div>
-<div id="stripe" style="">
-    <a style="" href="http://www.freifunk-franken.de/" target="_blank">freifunk-franken.de</a>
-</div>
 <div id="container">
     <div class="form">
         <h3>Registieren</h3>
         {if $status == 'form'}
-        <form id="register" name="register" action="{$self}" method="POST" accept-charset="UTF-8">
-            <label for="user_id">Benutzername:</label>
-            <input type="text" name="user_id" id="user_id" maxlength="32"/>
+            <form id="register" name="register" action="{$self}" method="POST" accept-charset="UTF-8">
+                <label for="user_id">Benutzername:</label>
+                <input type="text" name="user_id" id="user_id" maxlength="32"/>
 
-            <label for="user_pass">Passwort:</label>
-            <input type="password" name="user_pass" id="user_pass" maxlength="32"/>
+                <label for="user_pass">Passwort:</label>
+                <input type="password" name="user_pass" id="user_pass" maxlength="32"/>
 
-            <label for="user_mail">Email:</label>
-            <input type="text" name="user_mail" id="user_mail" maxlength="64"/>
+                <label for="user_mail">Email:</label>
+                <input type="text" name="user_mail" id="user_mail" maxlength="64"/>
 
-            <input type="submit" name="submit" value="Registrieren" class="btn"/>
-        </form>
+                <input type="submit" name="submit" value="Registrieren" class="btn"/>
+            </form>
         {elseif $status == 'error' || $status == 'success'}
-        <div class="{$status}">
-        {$message}
+            <div class="{$status}">
+                {$message}
+            </div>
+        {/if}
     </div>
-    {/if}
 </div>
 <div class="config">
     <h3>Konfiguration</h3>
@@ -46,5 +29,3 @@
         <li><a href="vpn.freifunk-franken.de.visz">Viscocity config</a></li>
     </ul>
 </div>
-</body>
-</html>
