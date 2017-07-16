@@ -28,6 +28,7 @@ class Template extends Smarty {
     }
 
     function render($template) {
+        $this->assign('template_dir', $this->template_dir);
         $this->display($template . '.html');
     }
 }
