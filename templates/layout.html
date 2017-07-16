@@ -10,5 +10,10 @@
 <div id="stripe" style="">
     <a style="" href="http://www.freifunk-franken.de/" target="_blank">freifunk-franken.de</a>
 </div>
+{if $loggedin}
+    <div id="logout">
+            <a href="login.php?action=logout">Logout</a>
+    </div>
+{/if}
 {include file="$page.html"}
 {include file="footer.html"}

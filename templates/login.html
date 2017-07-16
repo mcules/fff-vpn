@@ -1,0 +1,20 @@
+<div id="container">
+    <div class="form">
+        <h3>Anmelden</h3>
+        {if $status == 'form'}
+        <form id="register" name="register" action="{$self}" method="POST" accept-charset="UTF-8">
+            <label for="user_id">Benutzername:</label>
+            <input type="text" name="user_id" id="user_id" />
+
+            <label for="user_pass">Passwort:</label>
+            <input type="password" name="user_pass" id="user_pass" />
+
+            <input type="submit" name="submit" value="Login" class="btn"/>
+        </form>
+        {elseif $status == 'error' || $status == 'success'}
+        <div class="{$status}">
+            {$message}
+        </div>
+        {/if}
+    </div>
+</div>
