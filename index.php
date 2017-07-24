@@ -25,7 +25,7 @@ function main() {
 	if($form_sent && !$all_fields_defined) {
 		return error("Bitte alle Felder ausfüllen");
 	} else {
-        if(strlen($_POST['user_pass']) > 5) {
+        if(strlen($_POST['user_pass']) < 5) {
             return error ("Bitte mehr als 5 Zeichen für das Passwort verwenden");
         }
 
