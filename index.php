@@ -35,7 +35,7 @@ function main() {
 
 	if($form_sent) {
 		if($user_id != '' && $user_pass != '' && $user_mail != '') {
-			if(in_array($user_id, $forbidden_names)) {
+			if(in_array(strtolower($user_id), $forbidden_names)) {
 				return error('Benutzername nicht erlaubt, bitte wähle einen anderen!');
 			}
 			$stmt = $dbh->prepare("SELECT user_id FROM user where user_id = :user_id");
