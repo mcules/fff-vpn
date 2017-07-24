@@ -24,42 +24,52 @@ function main() {
 
 	if($form_sent && !$all_fields_defined) {
 		return error("Bitte alle Felder ausfüllen");
-	}
+	} else {
+        if(strlen($_POST['user_pass']) > 5) {
+            return error ("Bitte mehr als 5 Zeichen für das Passwort verwenden");
+        }
 
-	$user_id = $_POST['user_id'];
-	$user_pass = $_POST['user_pass'];
-	$user_mail = $_POST['user_mail'];
-	$forbidden_names = array('admin', 'webmaster');
+        $user_id = $_POST['user_id'];
+        $user_pass = $_POST['user_pass'];
+        $user_mail = $_POST['user_mail'];
 
-	$dbh = new PDO("mysql:host=$MYSQL_HOST;dbname=$MYSQL_DATA", $MYSQL_USER, $MYSQL_PASS);
+        //defining Usernames who are not Allowed
+        $forbidden_names = array('admin', 'webmaster', 'root', 'administrator');
 
-	if($form_sent) {
-		if($user_id != '' && $user_pass != '' && $user_mail != '') {
-			if(in_array($user_id, $forbidden_names)) {
-				return error('Benutzername nicht erlaubt, bitte wähle einen anderen!');
-			}
-			$stmt = $dbh->prepare("SELECT user_id FROM user where user_id = :user_id");
-			$stmt->bindParam(':user_id', $user_id);
-			$stmt->execute();
-			while ($row = $stmt->fetch()) {
-				if(is_array($row)) {
-					return error('Benutzername nicht verfügbar');
-				}
-			}
-			$user_pass_hash = password_hash($user_pass, PASSWORD_DEFAULT);
-			$stmt = $dbh->prepare("INSERT INTO user (user_id, user_pass, user_mail) VALUES (:user_id, :user_pass, :user_mail);");
-			$stmt->bindParam(':user_id', $user_id);
-			$stmt->bindParam(':user_pass', $user_pass_hash);
-			$stmt->bindParam(':user_mail', $user_mail);
-			if($stmt->execute()) {
-				return ["status" => "success", "message" => "Benutzer erfolgreich erstellt"];
-			}
-			$dbh = null;
-		}
-		else {
-			return error('Es ist ein Fehler aufgetreten. Bitte fülle alle Felder aus und versuche es noch einmal.');
-		}
-	}
+
+        //only establishe database connection if no forbidden name was used
+        if(in_array(strtolower($user_id), $forbidden_names)) {
+            return error('Benutzername nicht erlaubt, bitte wähle einen anderen!');
+        } else {
+
+            //establishing Database Connection
+            $dbh = new PDO("mysql:host=$MYSQL_HOST;dbname=$MYSQL_DATA", $MYSQL_USER, $MYSQL_PASS);
+
+
+            $stmt = $dbh->prepare("SELECT user_id FROM user where user_id = :user_id");
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->execute();
+            while ($row = $stmt->fetch()) {
+                if(is_array($row)) {
+                    return error('Benutzername nicht verfügbar');
+                }
+            }
+            $user_pass_hash = password_hash($user_pass, PASSWORD_DEFAULT);
+            $stmt = $dbh->prepare("INSERT INTO user (user_id, user_pass, user_mail) VALUES (:user_id, :user_pass, :user_mail);");
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->bindParam(':user_pass', $user_pass_hash);
+            $stmt->bindParam(':user_mail', $user_mail);
+            if($stmt->execute()) {
+                return ["status" => "success", "message" => "Benutzer erfolgreich erstellt"];
+            }
+            $dbh = null;
+        }
+
+
+
+    }
+
+
 }
 $result = main();
 
