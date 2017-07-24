@@ -26,15 +26,19 @@ function main() {
 		return error("Bitte alle Felder ausfüllen");
 	}
 
+	if(strlen($_POST['user_pass']) > 5) {
+	    return error ("Bitte mehr als 5 Zeichen für das Passwort verwenden");
+    }
+
 	$user_id = $_POST['user_id'];
 	$user_pass = $_POST['user_pass'];
 	$user_mail = $_POST['user_mail'];
-	$forbidden_names = array('admin', 'webmaster');
+	$forbidden_names = array('admin', 'webmaster', 'root', 'administrator');
 
 	$dbh = new PDO("mysql:host=$MYSQL_HOST;dbname=$MYSQL_DATA", $MYSQL_USER, $MYSQL_PASS);
 
 	if($form_sent) {
-		if($user_id != '' && $user_pass != '' && $user_mail != '') {
+		if($all_fields_defined) {
 			if(in_array(strtolower($user_id), $forbidden_names)) {
 				return error('Benutzername nicht erlaubt, bitte wähle einen anderen!');
 			}
