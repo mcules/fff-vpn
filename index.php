@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 require_once ('includes/smarty.class.php');
-include "config.php";
 
 function error($reason) {
 	return ["status" => "error", "message"=> $reason];
@@ -10,6 +9,7 @@ function error($reason) {
 $tpl = new Template();
 
 function main() {
+	include "config.php";
 	$all_fields_defined = (
 		(isset($_POST['user_id']) && $_POST['user_id'] != '') +
 		(isset($_POST['user_pass']) && $_POST['user_pass'] != '')+
